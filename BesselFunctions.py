@@ -21,7 +21,7 @@
 # %%
 # %matplotlib ipympl
 import numpy as np
-from scipy.special import yn
+from scipy.special import jv
 import matplotlib.pyplot as plt
 
 from matplotlib.lines import Line2D
@@ -30,7 +30,7 @@ from matplotlib.lines import Line2D
 # #### Generate some data
 
 # %%
-x = np.linspace(1, 10, 100)
+x = np.linspace(0, 10, 100)
 
 # %% [markdown]
 # #### Plot:
@@ -38,21 +38,25 @@ x = np.linspace(1, 10, 100)
 # %%
 fig, ax = plt.subplots()
 ax.axhline(0, color='xkcd:gray', lw=2, linestyle='-')
-ax.plot(x, yn(0, x), dashes=(6, 2), lw = 2, color = 'xkcd:azure', label = "$J_{0}(x)$")
-ax.plot(x, yn(1, x), dashes=(2, 2), lw = 2, color = 'xkcd:melon', label = "$J_{1}(x)$")
-ax.plot(x, yn(2, x), dashes=(3, 1, 1, 1), lw = 2, color = 'xkcd:jade', label = "$J_{2}(x)$")
+ax.plot(x, jv(0, x), dashes=(6, 2), lw = 2, color = 'xkcd:azure', label = "$J_{0}(x)$")
+ax.plot(x, jv(1, x), dashes=(2, 2), lw = 2, color = 'xkcd:melon', label = "$J_{1}(x)$")
+ax.plot(x, jv(2, x), dashes=(3, 1, 1, 1), lw = 2, color = 'xkcd:jade', label = "$J_{2}(x)$")
 
-legend_data = [Line2D([], [], dashes=(6, 2), lw = 2, color = 'xkcd:black', label = '0:th order'),
-               Line2D([], [], dashes=(2, 2), lw = 2, color = 'xkcd:black', label = '1:th order'),
-               Line2D([], [], dashes=(3, 1, 1, 1), lw = 2, color = 'xkcd:black', label = '2:th order')
+legend_data = [Line2D([], [], dashes=(6, 2), lw = 2, color = 'xkcd:black', label = r'$\alpha=0$'),
+               Line2D([], [], dashes=(2, 2), lw = 2, color = 'xkcd:black', label = r'$\alpha=1$'),
+               Line2D([], [], dashes=(3, 1, 1, 1), lw = 2, color = 'xkcd:black', label = r'$\alpha=2$')
               ]
 ax.legend()
-fig.legend(handles=legend_data, title="Functions:", loc="lower left", bbox_to_anchor=(0.25, 0.15))
+leg = fig.legend(handles=legend_data, title="Integer orders:", loc="upper left", bbox_to_anchor=(0.4, 0.88))
+leg.get_title().set_ha("left")
+for text in leg.get_texts():
+    text.set_ha("left")
+leg._legend_box.align = "left"
 
 ax.set_xlabel('$x$')
 ax.set_ylabel('$J_{n}$')
-ax.set_xlim([1, 10])
-ax.set_title('Bessel functions')
+ax.set_xlim([0, 10])
+ax.set_title('Bessel functions of the first kind')
 plt.show()
 
 # %%
