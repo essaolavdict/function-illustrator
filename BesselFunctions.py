@@ -46,7 +46,6 @@ legend_data = [Line2D([], [], dashes=(6, 2), lw = 2, color = 'xkcd:black', label
                Line2D([], [], dashes=(2, 2), lw = 2, color = 'xkcd:black', label = '1:th order'),
                Line2D([], [], dashes=(3, 1, 1, 1), lw = 2, color = 'xkcd:black', label = '2:th order')
               ]
-
 ax.legend()
 fig.legend(handles=legend_data, title="Functions:", loc="lower left", bbox_to_anchor=(0.25, 0.15))
 
