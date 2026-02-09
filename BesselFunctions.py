@@ -54,7 +54,7 @@ for text in leg.get_texts():
 leg._legend_box.align = "left"
 
 ax.set_xlabel('$x$')
-ax.set_ylabel('$J_{n}$')
+ax.set_ylabel(r'$J_{\alpha}$')
 ax.set_xlim([0, 10])
 ax.set_title('Bessel functions of the first kind')
 plt.show()
